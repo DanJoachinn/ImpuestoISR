@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 
 public class ImpuestosDatos extends JPanel {
 	
-	protected JTextField tfNombre,
+	private JTextField tfNombre,
 						tfRFC,
 						tfSueldoMensual,
 						tfAguinaldo,
