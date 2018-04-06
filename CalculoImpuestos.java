@@ -69,9 +69,9 @@ public class CalculoImpuestos {
 	public void Calcular(String[] datos) {
 		this.nombre=datos[0];
 		this.RFC=datos[1];
-		this.sueldoMensual=Integer.parseInt(datos[2]);
+		this.sueldoMensual=Float.parseFloat(datos[2]);
 		this.sueldoAnual=this.sueldoMensual*12;
-		this.aguinaldo=Integer.parseInt(datos[3]);
+		this.aguinaldo=Float.parseFloat(datos[3]);
 		if(this.aguinaldo>(this.sueldoMensual/2)) {
 			this.aguinaldoExento=this.sueldoMensual/2f;
 			this.aguinaldoGravado=this.aguinaldo-this.aguinaldoExento;
@@ -81,7 +81,7 @@ public class CalculoImpuestos {
 			this.aguinaldoGravado=0;
 		}
 		
-		this.primaVacacional=Integer.parseInt(datos[4]);
+		this.primaVacacional=Float.parseFloat(datos[4]);
 		if(this.primaVacacional>1209f) {
 			this.primaVacacionalExenta=1209f;
 			this.primaVacacionalGravada=this.primaVacacional-this.primaVacacionalExenta;
@@ -92,15 +92,15 @@ public class CalculoImpuestos {
 		}
 		
 		this.totalIngresosGravados=this.sueldoAnual+this.aguinaldoGravado+this.primaVacacionalGravada;
-		this.medicosHospitales=Integer.parseInt(datos[5]);
-		this.funerarios=Integer.parseInt(datos[6]);
-		this.SGMM=Integer.parseInt(datos[7]);
-		this.hipoteca=Integer.parseInt(datos[8]);
-		this.donativos=Integer.parseInt(datos[9]);
-		this.retiro=Integer.parseInt(datos[10]);
-		this.transporteEscolar=Integer.parseInt(datos[11]);
+		this.medicosHospitales=Float.parseFloat(datos[5]);
+		this.funerarios=Float.parseFloat(datos[6]);
+		this.SGMM=Float.parseFloat(datos[7]);
+		this.hipoteca=Float.parseFloat(datos[8]);
+		this.donativos=Float.parseFloat(datos[9]);
+		this.retiro=Float.parseFloat(datos[10]);
+		this.transporteEscolar=Float.parseFloat(datos[11]);
 		this.nivelEscolar=datos[12].toLowerCase();
-		this.colegiatura=Integer.parseInt(datos[13]);
+		this.colegiatura=Float.parseFloat(datos[13]);
 		
 		float colegiaturadeducida;
 		if(this.nivelEscolar.equals("preescolar")) {

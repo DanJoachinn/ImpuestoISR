@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -65,6 +66,9 @@ public class ImpuestosDatos extends JPanel {
 					hacerArray();
 					CalculoImpuestos ci=new CalculoImpuestos(datos);
 				}
+				catch(InputMismatchException arg0) {
+					JOptionPane.showMessageDialog(null, "El Saldo Mensual esta mal ingresado. Ingrese el Saldo Mensual");
+				}
 				catch(Exception arg0) {
 					JOptionPane.showMessageDialog(null, "Los valores estan mal ingresados. Ingreselos de nuevo");
 				}
@@ -105,51 +109,51 @@ public class ImpuestosDatos extends JPanel {
 	}
 	
 	public void validacion() throws Exception {
-		int validacion;
+		float validacion;
 		if(!this.tfSueldoMensual.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfSueldoMensual.getText());
+			validacion=Float.parseFloat(this.tfSueldoMensual.getText());
 		}
 			
 		if(!this.tfAguinaldo.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfAguinaldo.getText());
+			validacion=Float.parseFloat(this.tfAguinaldo.getText());
 		}
 		if(!this.tfPrimaVacacional.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfPrimaVacacional.getText());
+			validacion=Float.parseFloat(this.tfPrimaVacacional.getText());
 		}
 		
 		if(!this.tfMedicosHospitales.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfMedicosHospitales.getText());
+			validacion=Float.parseFloat(this.tfMedicosHospitales.getText());
 		}
 		if(!this.tfFunerarios.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfFunerarios.getText());
+			validacion=Float.parseFloat(this.tfFunerarios.getText());
 		}
 		if(!this.tfSGMM.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfSGMM.getText());
+			validacion=Float.parseFloat(this.tfSGMM.getText());
 		}
 		
 		if(!this.tfHipoteca.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfHipoteca.getText());
+			validacion=Float.parseFloat(this.tfHipoteca.getText());
 		}
 		if(!this.tfDonativos.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfDonativos.getText());
+			validacion=Float.parseFloat(this.tfDonativos.getText());
 		}
 		if(!this.tfRetiro.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfRetiro.getText());
+			validacion=Float.parseFloat(this.tfRetiro.getText());
 		}
 		if(!this.tfTransporteEscolar.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfTransporteEscolar.getText());
+			validacion=Float.parseFloat(this.tfTransporteEscolar.getText());
 		}
 		if(!this.tfColegiaturaTotal.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfColegiaturaTotal.getText());
+			validacion=Float.parseFloat(this.tfColegiaturaTotal.getText());
 		}
 	}
 	
-	public void hacerArray() {
+	public void hacerArray() throws Exception {
 		this.datos[0]=this.tfNombre.getText();
 		this.datos[1]=this.tfRFC.getText();
 		this.datos[2]=this.tfSueldoMensual.getText();
 		if(this.datos[2].equals("")||this.datos[2]==null) {
-			this.datos[2]="0";
+			throw new InputMismatchException();
 		}
 		this.datos[3]=this.tfAguinaldo.getText();
 		if(this.datos[3].equals("")||this.datos[3]==null) {
