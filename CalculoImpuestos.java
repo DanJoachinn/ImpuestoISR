@@ -12,11 +12,13 @@ import javax.swing.JOptionPane;
 public class CalculoImpuestos {
 	
 	private BufferedReader br;
+	private PrintWriter pw;
 	private String[] datosStr;
 	
 	private String nombre,
 	               RFC,
-	               nivelEscolar;
+	               nivelEscolar,
+	               linea;
 	
 	private float sueldoMensual,
 	            sueldoAnual,
@@ -44,14 +46,22 @@ public class CalculoImpuestos {
 	            excedente,
 	            porcentajeExcendete;
 
-	public CalculoImpuestos(File datos) {
+	public CalculoImpuestos(File expediente) {
 		try {
-			this.br=new BufferedReader(new FileReader(datos));
-			this.datosStr=this.br.readLine().split(",");
-			Calcular(this.datosStr);
-			total();
-			crearArchivo();
+			this.br=new BufferedReader(new FileReader(expediente));
+			this.pw=new PrintWriter(new FileWriter("resultadosISR.csv"));
+			this.linea=this.br.readLine();
+			do{
+				System.out.println(this.linea);
+				this.datosStr=this.linea.split(",");
+				Calcular(this.datosStr);
+				total();
+				crearArchivo();
+				this.linea=this.br.readLine();
+			}while(this.linea!=null);
+			this.pw.close();
 			this.br.close();
+			JOptionPane.showMessageDialog(null, "El archivo se ha creado exitosamente");
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null,"No se pudo encontar el archivo");
 		} catch (IOException e1) {
@@ -147,16 +157,9 @@ public class CalculoImpuestos {
 	}
 	
 	public void crearArchivo() {
-		try {
-			PrintWriter pw=new PrintWriter(new FileWriter("resultadosISR.csv"));
 			pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida (10% + 10% retiro),Monto calculo de ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
 			pw.println(this.nombre+","+this.RFC+","+this.sueldoMensual+","+this.sueldoAnual+","+this.aguinaldo+","+this.aguinaldoExento+","+this.aguinaldoGravado+","+this.primaVacacional+","+this.primaVacacionalExenta+","+this.primaVacacionalGravada+","+this.totalIngresosGravados+","+this.medicosHospitales+","+this.funerarios+","+this.SGMM+","+this.hipoteca+","+this.donativos+","+this.retiro+","+this.transporteEscolar+","+this.nivelEscolar+","+this.maximoDeducibleColegiatura+","+this.colegiatura+","+this.totalDeducciones+","+this.deduccionPermitida+","+this.sueldoConDeduccion+","+this.cuotaFija+","+this.porcentajeExcendete+","+this.excedente+","+this.totalPagar);
-			pw.close();
-			JOptionPane.showMessageDialog(null, "Se ha creado el archivo con el resumen y resultados");
-		}
-		catch(IOException e) {
-			JOptionPane.showMessageDialog(null, "No se pudo escribir el archivo");
-		}	}
+	}
 	
 	public void total() {
 		if(this.sueldoConDeduccion>=.01 && this.sueldoConDeduccion<=5952.84) {
