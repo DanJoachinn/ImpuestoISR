@@ -73,10 +73,9 @@ public class CalculoImpuestos {
 	public CalculoImpuestos(String [] datos) {
 		try {
 			this.pw=new PrintWriter(new FileWriter("resultadosISR.csv"));
-			Calcular(datos);
-			total();
-			crearArchivo();
-			JOptionPane.showMessageDialog(null, "El archivo se ha creado exitosamente");
+			this.Calcular(datos);
+			this.total();
+			this.hacerResumen();
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Hubo un error imprimiedo el documento.");
 		}
@@ -225,5 +224,36 @@ public class CalculoImpuestos {
 		}
 		
 		this.totalPagar=this.cuotaFija+this.excedente;
+	}
+	
+	public void hacerResumen() {
+		JOptionPane.showMessageDialog(null, "Nombre: "+this.nombre+"\n"+
+											"RFC: "+this.RFC+"\n"+
+											"Sueldo Mensual: "+this.sueldoMensual+"\n"+
+											"Ingreso Anual: "+this.sueldoAnual+"\n"+
+											"Aguinaldo: "+this.aguinaldo+"\n"+
+											"Aguinaldo Excento: "+this.aguinaldoExento+"\n"+
+											"Aguinaldo Gravado: "+this.aguinaldoGravado+"\n"+
+											"Prima Vacacional: "+this.primaVacacional+"\n"+
+											"Prima Vacacional Excenta: "+this.primaVacacionalExenta+"\n"+
+											"Prima Vacacional Gravada: "+this.primaVacacionalGravada+"\n"+
+											"Total Ingresos Gravados: "+this.totalIngresosGravados+"\n"+
+											"Medicos y Hospitales: "+this.medicosHospitales+"\n"+
+											"Gastos funerarios: "+this.funerarios+"\n"+
+											"Seguro de gastos Medicos: "+this.SGMM+"\n"+
+											"Hipotecarios: "+this.hipoteca+"\n"+
+											"Donativos: "+this.donativos+"\n"+
+											"Subcuenta Retiros: "+this.retiro+"\n"+
+											"Transporte Escolar: "+this.transporteEscolar+"\n"+
+											"Nivel Educativo: "+this.nivelEscolar+"\n"+
+											"Maximo a Deducir Colegiatura: "+this.maximoDeducibleColegiatura+"\n"+
+											"Colegiatura Pagada: "+this.colegiatura+"\n"+
+											"Total Deducciones(Sin Retiro): "+this.totalDeducciones+"\n"+
+											"Deducciones Permitidas: "+this.deduccionPermitida+"\n"+
+											"Monto Calculo de ISR: "+this.sueldoConDeduccion+"\n"+
+											"Cuota Fija: "+this.cuotaFija+"\n"+
+											"Porcentaje Excendete: "+this.porcentajeExcendete+"\n"+
+											"Pago Excedente: "+this.excedente+"\n"+
+											"Total a Pagar: "+this.totalPagar);
 	}
 }
