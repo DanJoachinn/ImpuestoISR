@@ -71,9 +71,15 @@ public class CalculoImpuestos {
 	}
 	
 	public CalculoImpuestos(String [] datos) {
-		Calcular(datos);
-		total();
-		crearArchivo();
+		try {
+			this.pw=new PrintWriter(new FileWriter("resultadosISR.csv"));
+			Calcular(datos);
+			total();
+			crearArchivo();
+			JOptionPane.showMessageDialog(null, "El archivo se ha creado exitosamente");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Hubo un error imprimiedo el documento.");
+		}
 	}
 	
 	public void Calcular(String[] datos) {
@@ -157,8 +163,8 @@ public class CalculoImpuestos {
 	}
 	
 	public void crearArchivo() {
-			pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida (10% + 10% retiro),Monto calculo de ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
-			pw.println(this.nombre+","+this.RFC+","+this.sueldoMensual+","+this.sueldoAnual+","+this.aguinaldo+","+this.aguinaldoExento+","+this.aguinaldoGravado+","+this.primaVacacional+","+this.primaVacacionalExenta+","+this.primaVacacionalGravada+","+this.totalIngresosGravados+","+this.medicosHospitales+","+this.funerarios+","+this.SGMM+","+this.hipoteca+","+this.donativos+","+this.retiro+","+this.transporteEscolar+","+this.nivelEscolar+","+this.maximoDeducibleColegiatura+","+this.colegiatura+","+this.totalDeducciones+","+this.deduccionPermitida+","+this.sueldoConDeduccion+","+this.cuotaFija+","+this.porcentajeExcendete+","+this.excedente+","+this.totalPagar);
+			this.pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida (10% + 10% retiro),Monto calculo de ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
+			this.pw.println(this.nombre+","+this.RFC+","+this.sueldoMensual+","+this.sueldoAnual+","+this.aguinaldo+","+this.aguinaldoExento+","+this.aguinaldoGravado+","+this.primaVacacional+","+this.primaVacacionalExenta+","+this.primaVacacionalGravada+","+this.totalIngresosGravados+","+this.medicosHospitales+","+this.funerarios+","+this.SGMM+","+this.hipoteca+","+this.donativos+","+this.retiro+","+this.transporteEscolar+","+this.nivelEscolar+","+this.maximoDeducibleColegiatura+","+this.colegiatura+","+this.totalDeducciones+","+this.deduccionPermitida+","+this.sueldoConDeduccion+","+this.cuotaFija+","+this.porcentajeExcendete+","+this.excedente+","+this.totalPagar);
 	}
 	
 	public void total() {

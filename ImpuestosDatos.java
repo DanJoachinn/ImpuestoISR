@@ -2,6 +2,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.IllegalFormatException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -65,7 +67,7 @@ public class ImpuestosDatos extends JPanel {
 					hacerArray();
 					CalculoImpuestos ci=new CalculoImpuestos(datos);
 				}
-				catch(Exception arg0) {
+				catch(IllegalFormatException arg0) {
 					JOptionPane.showMessageDialog(null, "Los valores estan mal ingresados. Ingreselos de nuevo");
 				}
 			}
@@ -104,43 +106,43 @@ public class ImpuestosDatos extends JPanel {
 		
 	}
 	
-	public void validacion() throws Exception {
-		int validacion;
+	public void validacion() throws IllegalFormatException {
+		float validacion;
 		if(!this.tfSueldoMensual.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfSueldoMensual.getText());
+			validacion=Float.parseFloat(this.tfSueldoMensual.getText());
 		}
 			
 		if(!this.tfAguinaldo.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfAguinaldo.getText());
+			validacion=Float.parseFloat(this.tfAguinaldo.getText());
 		}
 		if(!this.tfPrimaVacacional.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfPrimaVacacional.getText());
+			validacion=Float.parseFloat(this.tfPrimaVacacional.getText());
 		}
 		
 		if(!this.tfMedicosHospitales.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfMedicosHospitales.getText());
+			validacion=Float.parseFloat(this.tfMedicosHospitales.getText());
 		}
 		if(!this.tfFunerarios.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfFunerarios.getText());
+			validacion=Float.parseFloat(this.tfFunerarios.getText());
 		}
 		if(!this.tfSGMM.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfSGMM.getText());
+			validacion=Float.parseFloat(this.tfSGMM.getText());
 		}
 		
 		if(!this.tfHipoteca.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfHipoteca.getText());
+			validacion=Float.parseFloat(this.tfHipoteca.getText());
 		}
 		if(!this.tfDonativos.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfDonativos.getText());
+			validacion=Float.parseFloat(this.tfDonativos.getText());
 		}
 		if(!this.tfRetiro.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfRetiro.getText());
+			validacion=Float.parseFloat(this.tfRetiro.getText());
 		}
 		if(!this.tfTransporteEscolar.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfTransporteEscolar.getText());
+			validacion=Float.parseFloat(this.tfTransporteEscolar.getText());
 		}
 		if(!this.tfColegiaturaTotal.getText().equals("")) {
-			validacion=Integer.parseInt(this.tfColegiaturaTotal.getText());
+			validacion=Float.parseFloat(this.tfColegiaturaTotal.getText());
 		}
 	}
 	
